@@ -17,5 +17,4 @@ A lo largo del desarrollo de la herramienta, se pretende llevar a cabo las sigui
 * Creación de interfaz gráfica para visualizar información.
 * Desarrollo de aplicación Android.
 * Validación de la herramienta de visualización de datos.
-* Despliegue de la herramienta de visualización de datos.
-* Redacción de la memoria del trabajo de fin de grado.
+* Despliegue de la herramienta de visualización de datos
