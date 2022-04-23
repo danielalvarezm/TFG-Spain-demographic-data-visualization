@@ -1,10 +1,10 @@
-import {CovidModel} from '../models/defunctionsCovidModel.js';
+import {DefunctionsCovidModel} from '../models/defunctionsCovidModel.js';
 
 async function defunctionsCovidDataToDB (final_dataset) {
   for (let i = 0; i < final_dataset.length; i++) {
     const data = final_dataset[i];
 
-    const newCovid = new CovidModel({
+    const newCovid = new DefunctionsCovidModel({
       id: data.id,
       age: data.age,
       male_values: data.male_values,
