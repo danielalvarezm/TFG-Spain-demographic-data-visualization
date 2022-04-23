@@ -8,4 +8,4 @@ defunctionsCovidRouter.get('/defunciones-por-covid', async (req, res) => {
     res.send(defunctionsCovid);
 });
 
-export {defunctionsCovidRouter}
+export {defunctionsCovidRouter};

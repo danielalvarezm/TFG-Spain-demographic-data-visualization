@@ -8,4 +8,4 @@ populationRouter.get('/poblacion', async (req, res) => {
     res.send(population);
 });
 
-export {populationRouter}
+export {populationRouter};
