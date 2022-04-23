@@ -5,7 +5,7 @@ import { natalityDataToDB } from '../services/natalityService.js';
 
 // ¿Ponerlo por covid identificado o no identificado?
 
-cron.schedule (CRON_TIME, () => {
+//cron.schedule (CRON_TIME, () => {
 
 	// Llamamos a getURL que es una promesa
 	try {
@@ -15,7 +15,7 @@ cron.schedule (CRON_TIME, () => {
 		// Guardamos el dataset en un archivo JSON
 		let final_dataset = processDataset(dataset);
 
-		await natalityDataToDB(final_dataset);
+		await natala(final_dataset);
 		console.log('Natalidad');
 
 	} catch (error) {
@@ -23,7 +23,7 @@ cron.schedule (CRON_TIME, () => {
 		//return error;
 	}
 
-});
+//});
 
 function processDataset (dataset) {
 	let final_dataset = [];
@@ -63,3 +63,4 @@ function processDataset (dataset) {
 
 	return final_dataset;
 }
+
