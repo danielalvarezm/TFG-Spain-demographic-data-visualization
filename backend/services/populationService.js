@@ -1,7 +1,7 @@
 import {PopulationModel} from '../models/population-model.js';
 
 async function populationDataToDB (final_dataset) {
-  for (let i = 0; i < final_dataset.length; i++) {
+  for(let i = 0; i < final_dataset.length; i++) {
     const data = final_dataset[i];
     const newPopulation = new PopulationModel({
       id: data.id,
