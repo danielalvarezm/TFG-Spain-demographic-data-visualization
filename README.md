@@ -1,6 +1,6 @@
 # TFG - Visualización de datos demográficos en España
 
-El presente proyecto consiste en realizar una aplicación Full-Stack, donde a través del tratamiento de los datos abiertos de la API ofrecida por [Gobierno de España](https://datos.gob.es/es/), se ofrezca una visualización en tiempo real de los datos demográficos del país. Dicha aplicación contará con una interfaz web, así como un despliegue para aplicación Android.
+El presente proyecto consiste en realizar una aplicación Full-Stack, donde a través del tratamiento de los datos abiertos de la API ofrecida por el [Gobierno de España](https://datos.gob.es/es/), se ofrezca una visualización en tiempo real de los datos demográficos del país. Dicha aplicación contará con una interfaz web, así como un despliegue para aplicación Android.
 
 A continuación se mostrarán las principales funcionalidades que deberá de realizar la aplicación:
 
