@@ -16,6 +16,8 @@ import { defunctionsCovidDataToDB } from "../services/defunctionsCovidService.js
 		let final_dataset = processDataset(dataset);
 
 		await defunctionsCovidDataToDB(final_dataset);
+    console.log("Dataset saved: defunctionsCovid");
+
 	} catch (error) {
 		console.log(error);
 	}
