@@ -1,6 +1,10 @@
 import {DefunctionsCovidModel} from '../models/defunctionsCovidModel.js';
 
 async function defunctionsCovidDataToDB (final_dataset) {
+  // First delete all the data in the database
+  await DefunctionsCovidModel.deleteMany({});
+
+  // Then insert the new data
   for (let i = 0; i < final_dataset.length; i++) {
     const data = final_dataset[i];
 

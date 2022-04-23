@@ -1,6 +1,10 @@
 import {PopulationModel} from '../models/populationModel.js';
 
 async function populationDataToDB (final_dataset) {
+  // First delete all the data in the database
+  await PopulationModel.deleteMany({});
+
+  // Then insert the new data
   for (let i = 0; i < final_dataset.length; i++) {
     const data = final_dataset[i];
     const newPopulation = new PopulationModel({

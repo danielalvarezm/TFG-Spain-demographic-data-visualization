@@ -1,6 +1,10 @@
 import {NatalityModel} from '../models/natalityModel.js';
 
 async function natalityDataToDB (final_dataset) {
+  // First delete all the data in the database
+  await NatalityModel.deleteMany({});
+
+  // Then insert the new data
   for (let i = 0; i < final_dataset.length; i++) {
     const data = final_dataset[i];
     const newNatality = new NatalityModel({
