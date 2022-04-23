@@ -15,8 +15,8 @@ import { natalityDataToDB } from '../services/natalityService.js';
 		// Guardamos el dataset en un archivo JSON
 		let final_dataset = processDataset(dataset);
 
-		await natala(final_dataset);
-		console.log('Natalidad');
+		await natalityDataToDB(final_dataset);
+		console.log("Dataset saved: natality");
 
 	} catch (error) {
 		console.log(error);
