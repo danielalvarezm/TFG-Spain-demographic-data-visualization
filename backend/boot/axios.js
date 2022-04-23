@@ -8,11 +8,11 @@ const api = axios.create({
   })
 });
 
-console.log("Axios cargado correctamente.");
+console.log("Axios is ready");
 
 async function getURL(url) {
 	let dataset;
-	
+
 	await api.get(url)
 		.then(function (response) {
 			if (response.status === 200) {
