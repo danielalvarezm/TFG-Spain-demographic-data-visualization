@@ -23,4 +23,4 @@ async function getPopulationData() {
   return populationData;
 }
 
-export {populationDataToDB};
+export {populationDataToDB, getPopulationData};
