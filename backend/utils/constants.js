@@ -1,5 +1,5 @@
 import { DefunctionsCovidModel } from "../models/defunctionsCovidModel.js";
-import { PopulationModel } from "../models/populationModel.js";
+import { PopulationModel } from "../models/populationByCCAAModel.js";
 
 // Crontab constants
 export const CRON_TIME = '* * * * *';

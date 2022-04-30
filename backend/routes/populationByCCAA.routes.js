@@ -1,5 +1,5 @@
 import express from 'express';
-import { PopulationModel } from '../models/populationModel.js';
+import { PopulationModel } from '../models/populationByCCAAModel.js';
 
 const populationRouter = express.Router();
 

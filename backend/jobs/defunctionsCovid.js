@@ -1,26 +1,24 @@
 import cron from "node-cron";
 import { CRON_TIME } from "../utils/constants.js";
-import { getURL, getJSON } from "../boot/axios.js";
+import { getURL, getJSONContent } from "../boot/axios.js";
 import { defunctionsCovidDataToDB } from "../services/defunctionsCovidService.js";
-
 
 //cron.schedule (CRON_TIME, () => {
 // Llamamos a getURL que es una promesa
-	try {
-		const datasetURL = await getURL(
-			"https://datos.gob.es/apidata/catalog/dataset/ea0010587-defunciones-por-covid-19-virus-identificado-y-virus-no-identificado-sospechoso-comunidad-y-ciudad-autonoma-de-defuncion-sexo-y-edad-ecm-identificador-api-t15-p417-a2020-covid-l0-01004-px"
-		);
-		const dataset = await getJSON(datasetURL);
+try {
+  const datasetURL = await getURL(
+    "https://datos.gob.es/apidata/catalog/dataset/ea0010587-defunciones-por-covid-19-virus-identificado-y-virus-no-identificado-sospechoso-comunidad-y-ciudad-autonoma-de-defuncion-sexo-y-edad-ecm-identificador-api-t15-p417-a2020-covid-l0-01004-px"
+  );
+  const dataset = await getJSONContent(datasetURL);
 
-		// Guardamos el dataset en un archivo JSON
-		let final_dataset = processDataset(dataset);
+  // Guardamos el dataset en un archivo JSON
+  let final_dataset = processDataset(dataset);
 
-		await defunctionsCovidDataToDB(final_dataset);
-    console.log("Dataset saved: defunctionsCovid");
-
-	} catch (error) {
-		console.log(error);
-	}
+  await defunctionsCovidDataToDB(final_dataset);
+  console.log("Dataset saved: defunctionsCovid");
+} catch (error) {
+  console.log(error);
+}
 //});
 
 function processDataset(dataset) {

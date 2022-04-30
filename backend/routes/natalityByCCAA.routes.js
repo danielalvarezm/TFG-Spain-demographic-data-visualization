@@ -1,5 +1,5 @@
 import express from 'express';
-import { NatalityModel } from '../models/natalityModel.js';
+import { NatalityModel } from '../models/natalityByCCAAModel.js';
 
 const natalityRouter = express.Router();
 

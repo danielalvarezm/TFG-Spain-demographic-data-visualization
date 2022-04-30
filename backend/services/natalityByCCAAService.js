@@ -1,4 +1,4 @@
-import {NatalityModel} from '../models/natalityModel.js';
+import {NatalityModel} from '../models/natalityByCCAAModel.js';
 
 async function natalityDataToDB (final_dataset) {
   // First delete all the data in the database

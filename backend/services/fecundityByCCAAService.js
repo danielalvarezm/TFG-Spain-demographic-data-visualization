@@ -1,4 +1,4 @@
-import {FecundityModel} from '../models/fecundityModel.js';
+import {FecundityModel} from '../models/fecundityByCCAAModel.jsdel.js';
 
 async function fecundityDataToDB (final_dataset) {
   // First delete all the data in the database

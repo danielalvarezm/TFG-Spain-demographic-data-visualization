@@ -1,4 +1,4 @@
-import {PopulationModel} from '../models/populationModel.js';
+import {PopulationModel} from '../models/populationByCCAAModel.js';
 
 async function populationDataToDB (final_dataset) {
   // First delete all the data in the database

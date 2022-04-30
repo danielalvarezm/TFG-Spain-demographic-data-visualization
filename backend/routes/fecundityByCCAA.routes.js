@@ -1,5 +1,5 @@
 import express from 'express';
-import { FecundityModel } from '../models/fecundityModel.js';
+import { FecundityModel } from '../models/fecundityByCCAAModel.js';
 
 const fecundityRouter = express.Router();
 

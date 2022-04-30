@@ -33,7 +33,7 @@ async function getURL(url) {
 	return dataset;
 }
 
-async function getJSON(url) {
+async function getJSONContent(url) {
 	let data = {};
 
 	await api.get(url)
@@ -51,4 +51,4 @@ async function getJSON(url) {
 	return data;
 }
 
-export { api, getURL, getJSON };
+export { api, getURL, getJSONContent };

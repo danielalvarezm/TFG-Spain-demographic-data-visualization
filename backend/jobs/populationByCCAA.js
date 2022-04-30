@@ -1,8 +1,8 @@
 //llamada y procesar
 import cron from 'node-cron';
 import { CRON_TIME } from '../utils/constants.js';
-import { getURL, getJSON } from '../boot/axios.js';
-import { populationDataToDB } from '../services/populationService.js';
+import { getURL, getJSONContent } from '../boot/axios.js';
+import { populationDataToDB } from '../services/populationByCCAAService.js';
 
 
 // POBLACION RESIDENTE
@@ -12,7 +12,7 @@ import { populationDataToDB } from '../services/populationService.js';
 	// Llamamos a getURL que es una promesa
 	try {
 		const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-poblacion-residente-por-fecha-sexo-y-generacion-edad-a-31-de-diciembre-semestral-comunidades-autonomas-cifras-de-poblacion-identificador-api-96821')
-		const dataset = await getJSON(datasetURL)
+		const dataset = await getJSONContent(datasetURL)
 
 		// Guardamos el dataset en un archivo JSON
 		let final_dataset = processDataset(dataset);
@@ -55,7 +55,7 @@ function processDataset (dataset) {
 				};
 
 				data.Data.forEach( data => {
-					if (data.T3_Periodo == '1 de julio de') {
+					if (data.T3_Periodo == '1 de enero de') {
 						object.values.push({
 							interval: data.Anyo,
 							value: data.Valor

@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import { CRON_TIME } from '../utils/constants.js';
-import { getURL, getJSON } from '../boot/axios.js';
-import { fecundityDataToDB } from '../services/fecundityService.js';
+import { getURL, getJSONContent } from '../boot/axios.js';
+import { natalityDataToDB } from '../services/natalityByCCAAService.js';
 
 // ¿Ponerlo por covid identificado o no identificado?
 
@@ -9,14 +9,14 @@ import { fecundityDataToDB } from '../services/fecundityService.js';
 
 	// Llamamos a getURL que es una promesa
 	try {
-		const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-indicador-coyuntural-de-fecundidad-por-comunidad-autonoma-segun-orden-del-nacimiento-y-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-1441');
-		const dataset = await getJSON(datasetURL);
+		const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-natalidad-por-comunidad-autonoma-segun-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-49429');
+		const dataset = await getJSONContent(datasetURL);
 
 		// Guardamos el dataset en un archivo JSON
 		let final_dataset = processDataset(dataset);
 
-		await fecundityDataToDB(final_dataset);
-		console.log("Dataset saved: fecundity");
+		await natalityDataToDB(final_dataset);
+		console.log("Dataset saved: natality");
 
 	} catch (error) {
 		console.log(error);
@@ -26,7 +26,6 @@ import { fecundityDataToDB } from '../services/fecundityService.js';
 //});
 
 function processDataset (dataset) {
-
 	let final_dataset = [];
 	let index = 0;
 
@@ -34,8 +33,7 @@ function processDataset (dataset) {
 		let tmp_values = [];
 		let tmp_name = '';
 
-		if (data.Nombre.match("Total Nacional") || data.Nombre.match("Española") || data.Nombre.match("Extranjera") ||
-		data.Nombre.match("Primero.") || data.Nombre.match("Segundo.") || data.Nombre.match("Tercero.") || data.Nombre.match("Cuarto y más."))
+		if (data.Nombre.match("Total Nacional") || data.Nombre.match("Española") || data.Nombre.match("Extranjera"))
 			return;
 
 		tmp_name = data.Nombre.split('.')[1];
@@ -65,3 +63,4 @@ function processDataset (dataset) {
 
 	return final_dataset;
 }
+
