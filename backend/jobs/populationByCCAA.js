@@ -4,9 +4,6 @@ import { CRON_TIME } from '../utils/constants.js';
 import { getURL, getJSONContent } from '../boot/axios.js';
 import { populationDataToDB } from '../services/populationByCCAAService.js';
 
-
-// POBLACION RESIDENTE
-
 //cron.schedule (CRON_TIME, () => {
 
 	// Llamamos a getURL que es una promesa

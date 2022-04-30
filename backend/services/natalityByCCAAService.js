@@ -1,10 +1,8 @@
 import {NatalityModel} from '../models/natalityByCCAAModel.js';
 
 async function natalityDataToDB (final_dataset) {
-  // First delete all the data in the database
   await NatalityModel.deleteMany({});
 
-  // Then insert the new data
   for (let i = 0; i < final_dataset.length; i++) {
     const data = final_dataset[i];
     const newNatality = new NatalityModel({
@@ -16,6 +14,11 @@ async function natalityDataToDB (final_dataset) {
 
     await newNatality.save();
   }
+}
+
+async function getNatalityData () {
+  const natalityData = await NatalityModel.find({});
+  return natalityData;
 }
 
 export {natalityDataToDB};

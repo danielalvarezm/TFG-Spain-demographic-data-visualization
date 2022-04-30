@@ -3,8 +3,6 @@ import { CRON_TIME } from '../utils/constants.js';
 import { getURL, getJSONContent } from '../boot/axios.js';
 import { natalityDataToDB } from '../services/natalityByCCAAService.js';
 
-// ¿Ponerlo por covid identificado o no identificado?
-
 //cron.schedule (CRON_TIME, () => {
 
 	// Llamamos a getURL que es una promesa
