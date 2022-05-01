@@ -27,7 +27,6 @@ for (let i = 0; i < natalityData.length; i++) {
       value: parseInt(amountOfBirths * 1000, 10) / 1000,  // redondear a 3 decimales
     });
 
-    console.log(values);
   }
 
   finalDataset.push({
