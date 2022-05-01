@@ -10,6 +10,7 @@ import { fecundityDataToDB } from '../services/fecundityByCCAAService.js';
 		const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-indicador-coyuntural-de-fecundidad-por-comunidad-autonoma-segun-orden-del-nacimiento-y-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-1441');
 		const dataset = await getJSONContent(datasetURL);
 
+    console.log(dataset);
 		// Guardamos el dataset en un archivo JSON
 		let final_dataset = processDataset(dataset);
 

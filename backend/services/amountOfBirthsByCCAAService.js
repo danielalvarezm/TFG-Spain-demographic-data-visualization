@@ -1,4 +1,4 @@
-import { AmountOfBirthsModel } from "../models/amountOfBirthsByCCAAModel";
+import { AmountOfBirthsModel } from "../models/amountOfBirthsByCCAAModel.js";
 
 async function amountOfBirthsDataToDB (final_dataset) {
   await AmountOfBirthsModel.deleteMany({});
