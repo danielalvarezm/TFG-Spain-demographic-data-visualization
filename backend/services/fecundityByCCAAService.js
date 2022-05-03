@@ -18,4 +18,4 @@ async function fecundityDataToDB (final_dataset) {
   }
 }
 
-export {fecundityDataToDB};
+export { fecundityDataToDB };
