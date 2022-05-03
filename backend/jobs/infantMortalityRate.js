@@ -1,18 +1,16 @@
 // import cron from "node-cron";
 // import { CRON_TIME } from "../utils/constants.js";
 import {getURL, getJSONContent} from '../boot/axios.js';
+import {infantMortalityRateDataToDB} from '../services/infantMortalityRateService.js';
 
 try {
   const datasetURL = await getURL(
     'https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-mortalidad-infantil-por-provincia-segun-sexo-idb-identificador-api-48881',
   );
   const dataset = await getJSONContent(datasetURL);
-
-  // Guardamos el dataset en un archivo JSON
   const finalDataset = processDataset(dataset);
+  await infantMortalityRateDataToDB(finalDataset);
 
-  console.log(finalDataset);
-  // await
   console.log('Dataset saved: infant mortality rate');
 } catch (error) {
   console.log(error);

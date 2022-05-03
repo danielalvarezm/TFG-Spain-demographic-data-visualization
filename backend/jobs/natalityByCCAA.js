@@ -9,11 +9,9 @@ import {natalityDataToDB} from '../services/natalityByCCAAService.js';
 try {
   const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-natalidad-por-comunidad-autonoma-segun-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-49429');
   const dataset = await getJSONContent(datasetURL);
-
-  // Guardamos el dataset en un archivo JSON
   const finalDataset = processDataset(dataset);
-
   await natalityDataToDB(finalDataset);
+
   console.log('Dataset saved: natality');
 } catch (error) {
   console.log(error);

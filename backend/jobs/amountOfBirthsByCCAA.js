@@ -21,7 +21,6 @@ for (let i = 0; i < natalityData.length; i++) {
     const population = populations[j].value;
     const amountOfBirths = (natality * population) /1000;
 
-
     values.push({
       interval: year,
       value: parseInt(amountOfBirths * 1000, 10) / 1000, // redondear a 3 decimales
@@ -37,7 +36,6 @@ for (let i = 0; i < natalityData.length; i++) {
 
 await amountOfBirthsDataToDB(finalDataset);
 console.log('Dataset saved: amount of births by CCAA');
-
 
 // Año 2020
 // Andalucía

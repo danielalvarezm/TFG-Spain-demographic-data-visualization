@@ -10,16 +10,13 @@ import {populationDataToDB} from '../services/populationByCCAAService.js';
 try {
   const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-poblacion-residente-por-fecha-sexo-y-generacion-edad-a-31-de-diciembre-semestral-comunidades-autonomas-cifras-de-poblacion-identificador-api-96821');
   const dataset = await getJSONContent(datasetURL);
-
-  // Guardamos el dataset en un archivo JSON
   const finalDataset = processDataset(dataset);
-
   await populationDataToDB(finalDataset);
+
   console.log('Dataset saved: population');
 } catch (error) {
   console.log(error);
 }
-
 // });
 
 function processDataset(dataset) {

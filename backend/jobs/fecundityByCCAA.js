@@ -4,22 +4,17 @@ import {getURL, getJSONContent} from '../boot/axios.js';
 import {fecundityDataToDB} from '../services/fecundityByCCAAService.js';
 
 // cron.schedule (CRON_TIME, () => {
-
-// Llamamos a getURL que es una promesa
 try {
   const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-indicador-coyuntural-de-fecundidad-por-comunidad-autonoma-segun-orden-del-nacimiento-y-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-1441');
   const dataset = await getJSONContent(datasetURL);
-
-  // Guardamos el dataset en un archivo JSON
   const finalDataset = processDataset(dataset);
-
   await fecundityDataToDB(finalDataset);
+
   console.log('Dataset saved: fecundity');
 } catch (error) {
   console.log(error);
   // return error;
 }
-
 // });
 
 function processDataset(dataset) {

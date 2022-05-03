@@ -10,11 +10,9 @@ try {
     'https://datos.gob.es/apidata/catalog/dataset/ea0010587-defunciones-por-covid-19-virus-identificado-y-virus-no-identificado-sospechoso-comunidad-y-ciudad-autonoma-de-defuncion-sexo-y-edad-ecm-identificador-api-t15-p417-a2020-covid-l0-01004-px',
   );
   const dataset = await getJSONContent(datasetURL);
-
-  // Guardamos el dataset en un archivo JSON
   const finalDataset = processDataset(dataset);
-
   await defunctionsCovidDataToDB(finalDataset);
+
   console.log('Dataset saved: defunctionsCovid');
 } catch (error) {
   console.log(error);
