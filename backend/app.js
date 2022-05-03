@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Boot components
 import './boot/axios.js';
 import {mongoose} from './boot/database.js';
@@ -17,7 +18,6 @@ app.use(cors());
 app.use(express.json());
 
 // import './routes/routes.js'; // Importamos las rutas
-
 import {populationRouter} from './routes/populationByCCAA.routes.js';
 import {defunctionsCovidRouter} from './routes/defunctionsCovid.routes.js';
 import {natalityRouter} from './routes/natalityByCCAA.routes.js';
@@ -29,7 +29,7 @@ app.use('/api', natalityRouter);
 app.use('/api', fecundityRouter);
 
 app.listen(3000, () => {
-    console.log('Server running on port 3000');
-})
+  console.log('Server running on port 3000');
+});
 
 export {app};
