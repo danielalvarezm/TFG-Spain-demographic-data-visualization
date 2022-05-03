@@ -1,20 +1,20 @@
-import cron from 'node-cron';
-import { CRON_TIME } from '../utils/constants.js';
-import { getNatalityData } from "../services/natalityByCCAAService.js";
-import { getPopulationData } from "../services/populationByCCAAService.js";
-import { amountOfBirthsDataToDB } from '../services/amountOfBirthsByCCAAService.js';
+// import cron from 'node-cron';
+// import {CRON_TIME} from '../utils/constants.js';
+import {getNatalityData} from '../services/natalityByCCAAService.js';
+import {getPopulationData} from '../services/populationByCCAAService.js';
+import {amountOfBirthsDataToDB} from '../services/amountOfBirthsByCCAAService.js';
 
 const natalityData = await getNatalityData();
 const populationData = await getPopulationData();
-let finalDataset = [];
+const finalDataset = [];
 
 for (let i = 0; i < natalityData.length; i++) {
   const ccaa = natalityData[i].ccaa;
   const natalities = natalityData[i].values;
-  let populations = populationData[i].total_values;
+  const populations = populationData[i].total_values;
   populations.shift();
 
-  let values = [];
+  const values = [];
   for (let j = 0; j < natalities.length; j++) {
     const year = natalities[j].interval;
     const natality = natalities[j].value;
@@ -24,22 +24,19 @@ for (let i = 0; i < natalityData.length; i++) {
 
     values.push({
       interval: year,
-      value: parseInt(amountOfBirths * 1000, 10) / 1000,  // redondear a 3 decimales
+      value: parseInt(amountOfBirths * 1000, 10) / 1000, // redondear a 3 decimales
     });
-
   }
 
   finalDataset.push({
     id: i,
     ccaa: ccaa,
-    values: values
+    values: values,
   });
 }
 
 await amountOfBirthsDataToDB(finalDataset);
-console.log("Dataset saved: amount of births by CCAA");
-
-
+console.log('Dataset saved: amount of births by CCAA');
 
 
 // Año 2020
@@ -55,8 +52,3 @@ console.log("Dataset saved: amount of births by CCAA");
 
 // Between 2002 and 2020
 // amountOfBirthsByCCAA = (natality * population) / 1000
-
-
-
-
-

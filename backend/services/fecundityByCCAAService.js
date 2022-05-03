@@ -1,21 +1,18 @@
 import {FecundityModel} from '../models/fecundityByCCAAModel.js';
 
-async function fecundityDataToDB (final_dataset) {
+async function fecundityDataToDB(finalDataset) {
   // First delete all the data in the database
   await FecundityModel.deleteMany({});
-
   // Then insert the new data
-  for (let i = 0; i < final_dataset.length; i++) {
-    const data = final_dataset[i];
+  for (let i = 0; i < finalDataset.length; i++) {
+    const data = finalDataset[i];
     const newFecundity = new FecundityModel({
       id: data.id,
       ccaa: data.ccaa,
-      values: data.values
-
+      values: data.values,
     });
-
     await newFecundity.save();
   }
 }
 
-export { fecundityDataToDB };
+export {fecundityDataToDB};

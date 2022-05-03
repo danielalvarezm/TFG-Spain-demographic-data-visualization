@@ -1,64 +1,64 @@
-import cron from 'node-cron';
-import { CRON_TIME } from '../utils/constants.js';
-import { getURL, getJSONContent } from '../boot/axios.js';
-import { natalityDataToDB } from '../services/natalityByCCAAService.js';
+// import cron from 'node-cron';
+// import {CRON_TIME} from '../utils/constants.js';
+import {getURL, getJSONContent} from '../boot/axios.js';
+import {natalityDataToDB} from '../services/natalityByCCAAService.js';
 
-//cron.schedule (CRON_TIME, () => {
+// cron.schedule (CRON_TIME, () => {
 
-	// Llamamos a getURL que es una promesa
-	try {
-		const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-natalidad-por-comunidad-autonoma-segun-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-49429');
-		const dataset = await getJSONContent(datasetURL);
+// Llamamos a getURL que es una promesa
+try {
+  const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-natalidad-por-comunidad-autonoma-segun-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-49429');
+  const dataset = await getJSONContent(datasetURL);
 
-		// Guardamos el dataset en un archivo JSON
-		let final_dataset = processDataset(dataset);
+  // Guardamos el dataset en un archivo JSON
+  const finalDataset = processDataset(dataset);
 
-		await natalityDataToDB(final_dataset);
-		console.log("Dataset saved: natality");
+  await natalityDataToDB(finalDataset);
+  console.log('Dataset saved: natality');
+} catch (error) {
+  console.log(error);
+  // return error;
+}
 
-	} catch (error) {
-		console.log(error);
-		//return error;
-	}
+// });
 
-//});
+function processDataset(dataset) {
+  const finalDataset = [];
+  let index = 0;
 
-function processDataset (dataset) {
-	let final_dataset = [];
-	let index = 0;
+  dataset.forEach( (data) => {
+    const tmpValues = [];
+    let tmpName = '';
 
-	dataset.forEach( data => {
-		let tmp_values = [];
-		let tmp_name = '';
+    if (data.Nombre.match('Total Nacional') || data.Nombre.match('Española') || data.Nombre.match('Extranjera')) {
+      return;
+    }
 
-		if (data.Nombre.match("Total Nacional") || data.Nombre.match("Española") || data.Nombre.match("Extranjera"))
-			return;
+    tmpName = data.Nombre.split('.')[1];
+    tmpName = tmpName.trim();
 
-		tmp_name = data.Nombre.split('.')[1];
-		tmp_name = tmp_name.trim();
+    // Si tiene paréntesis
+    if (tmpName.indexOf('(') > -1) {
+      tmpName = tmpName.split('(')[1].replace(/[()]/g, '') + ' ' + tmpName.split('(')[0];
+      tmpName = tmpName.trim();
+    }
 
-		// Si tiene paréntesis
-		if (tmp_name.indexOf('(') > -1) {
-			tmp_name = tmp_name.split('(')[1].replace(/[()]/g, '') + ' ' + tmp_name.split('(')[0];
-			tmp_name = tmp_name.trim();
-		}
+    data.Data.forEach( (data) => {
+      tmpValues.push({
+        interval: data.Anyo,
+        value: data.Valor,
+      });
+    });
 
-		data.Data.forEach( data => {
-			tmp_values.push({
-				interval: data.Anyo,
-				value: data.Valor
-			});
-		});
+    finalDataset.push({
+      id: index,
+      ccaa: tmpName,
+      values: tmpValues,
+    });
 
-		final_dataset.push({
-			id: index,
-			ccaa: tmp_name,
-			values: tmp_values
-		})
+    index++;
+  });
 
-		index++;
-	});
-
-	return final_dataset;
+  return finalDataset;
 }
 
