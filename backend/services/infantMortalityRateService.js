@@ -8,7 +8,7 @@ async function infantMortalityRateDataToDB(finalDataset) {
     const data = finalDataset[i];
     const newInfantMortalityRate = new InfantMortalityRateModel({
       id: data.id,
-      ccaa: data.ccaa,
+      year: data.year,
       total_value: data.total_value,
       male_value: data.male_value,
       female_value: data.female_value,
