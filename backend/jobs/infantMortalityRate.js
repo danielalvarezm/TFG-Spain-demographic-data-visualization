@@ -37,9 +37,9 @@ function processDataset(dataset) {
     finalDataset.push({
       id: i,
       year: year,
-      total: totalValue,
-      male: maleValue,
-      female: femaleValue,
+      total_value: totalValue,
+      male_value: maleValue,
+      female_value: femaleValue,
     });
   }
 
