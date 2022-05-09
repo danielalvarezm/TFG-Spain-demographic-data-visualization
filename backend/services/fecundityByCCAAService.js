@@ -15,4 +15,9 @@ async function fecundityDataToDB(finalDataset) {
   }
 }
 
-export {fecundityDataToDB};
+async function getFecundityData() {
+  const fecundityData = await FecundityModel.find({});
+  return fecundityData;
+}
+
+export {fecundityDataToDB, getFecundityData};
