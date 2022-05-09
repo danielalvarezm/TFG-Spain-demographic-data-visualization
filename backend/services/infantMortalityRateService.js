@@ -17,4 +17,9 @@ async function infantMortalityRateDataToDB(finalDataset) {
   }
 }
 
-export {infantMortalityRateDataToDB};
+async function getInfantMortalityRateData() {
+  const infantMortalityRateData = await InfantMortalityRateModel.find({});
+  return infantMortalityRateData;
+}
+
+export {infantMortalityRateDataToDB, getInfantMortalityRateData};
