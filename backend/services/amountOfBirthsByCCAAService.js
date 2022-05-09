@@ -14,4 +14,9 @@ async function amountOfBirthsDataToDB(finalDataset) {
   }
 }
 
-export {amountOfBirthsDataToDB};
+async function getAmountOfBirthsData() {
+  const amountOfBirths = await AmountOfBirthsModel.find({});
+  return amountOfBirths;
+}
+
+export {amountOfBirthsDataToDB, getAmountOfBirthsData};
