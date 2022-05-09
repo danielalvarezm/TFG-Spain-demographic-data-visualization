@@ -1,5 +1,7 @@
 // import cron from 'node-cron';
 // import {CRON_TIME} from '../utils/constants.js';
+import './populationByCCAA.js';
+import './natalityByCCAA.js';
 import {getNatalityData} from '../services/natalityByCCAAService.js';
 import {getPopulationData} from '../services/populationByCCAAService.js';
 import {amountOfBirthsDataToDB} from '../services/amountOfBirthsByCCAAService.js';

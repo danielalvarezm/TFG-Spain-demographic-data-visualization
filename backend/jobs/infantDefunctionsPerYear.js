@@ -1,11 +1,16 @@
+import './amountOfBirthsByCCAA.js';
 import {getInfantMortalityRateData} from '../services/infantMortalityRateService.js';
 import {getAmountOfBirthsData} from '../services/amountOfBirthsByCCAAService.js';
+import {infantDefunctionsPerYearDataToDB} from '../services/infantDefunctionsPerYearService.js';
 
 const infantMortalityRateData = await getInfantMortalityRateData();
 const amountOfBirthsData = await getAmountOfBirthsData();
 const amountOfBirthsAtNationalLevel = transformToNationalLevel(amountOfBirthsData);
 const finalDataset = generateInfantDefunctionsPerYear(
   infantMortalityRateData, amountOfBirthsAtNationalLevel);
+
+await infantDefunctionsPerYearDataToDB(finalDataset);
+console.log('Dataset saved: infant defunctions per year');
 
 function transformToNationalLevel(amountOfBirthsData) {
   const amountOfBirthsAtNationalLevel = [];
@@ -26,11 +31,12 @@ function transformToNationalLevel(amountOfBirthsData) {
 
 function generateInfantDefunctionsPerYear(infantMortalityRateData, amountOfBirthsAtNationalLevel) {
   const finalDataset = [];
-  for (let i = 0; i < infantMortalityRateData.length; i++) {
-    const value = (amountOfBirthsAtNationalLevel[i].value * infantMortalityRateData[i].value)/1000;
+  for (let i = 0; i < amountOfBirthsAtNationalLevel.length; i++) {
+    const value = (amountOfBirthsAtNationalLevel[i].value *
+      infantMortalityRateData[i].total_value)/1000;
     finalDataset.push({
       id: i,
-      interval: infantMortalityRateData[i].interval,
+      interval: amountOfBirthsAtNationalLevel[i].interval,
       value: parseInt(value * 1000, 10) / 1000,
     });
   }
