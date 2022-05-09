@@ -28,21 +28,21 @@ function processDataset(dataset) {
   // Recorremos el array de población
   dataset.forEach( (data) => {
     let object = {name: '', values: []};
-    let tmpName = '';
+    let ccaaName = '';
 
     if (data.Nombre.match('Total Nacional')) return;
     else if (data.Nombre.match('Todas las edades.') && data.Nombre.match('Población. Número. ')) {
-      tmpName = data.Nombre.split('.')[1];
-      if (tmpName.match(',')) {
-        tmpName = tmpName.split(',')[1] + tmpName.split(',')[0];
+      ccaaName = data.Nombre.split('.')[1];
+      if (ccaaName.match(',')) {
+        ccaaName = ccaaName.split(',')[1] + ccaaName.split(',')[0];
       }
 
-      tmpName = tmpName.trim();
+      ccaaName = ccaaName.trim();
 
       if (!data.Nombre.match('Total')) {
         // Obtenemos los values según el año
         object = {
-          name: tmpName,
+          name: ccaaName,
           values: [],
         };
 
