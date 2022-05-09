@@ -4,6 +4,7 @@ import {getNatalityData} from '../services/natalityByCCAAService.js';
 import {getPopulationData} from '../services/populationByCCAAService.js';
 import {amountOfBirthsDataToDB} from '../services/amountOfBirthsByCCAAService.js';
 
+// ! Importar los ficheros de dataset que necesito aquí en vez de en el index
 const natalityData = await getNatalityData();
 const populationData = await getPopulationData();
 const finalDataset = [];
@@ -23,7 +24,7 @@ for (let i = 0; i < natalityData.length; i++) {
 
     values.push({
       interval: year,
-      value: parseInt(amountOfBirths * 1000, 10) / 1000, // redondear a 3 decimales
+      value: parseInt(amountOfBirths * 1000, 10) / 1000,
     });
   }
 

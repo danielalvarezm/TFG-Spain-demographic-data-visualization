@@ -23,20 +23,19 @@ function processDataset(dataset) {
 
   dataset.forEach( (data) => {
     const tmpValues = [];
-    let tmpName = '';
 
     if (data.Nombre.match('Total Nacional') || data.Nombre.match('Española') || data.Nombre.match('Extranjera') ||
     data.Nombre.match('Primero.') || data.Nombre.match('Segundo.') || data.Nombre.match('Tercero.') || data.Nombre.match('Cuarto y más.')) {
       return;
     }
 
-    tmpName = data.Nombre.split('.')[1];
-    tmpName = tmpName.trim();
+    const nameSplitted = data.Nombre.split('.')[1];
+    let ccaaName = nameSplitted.trim();
 
     // Si tiene paréntesis
-    if (tmpName.indexOf('(') > -1) {
-      tmpName = tmpName.split('(')[1].replace(/[()]/g, '') + ' ' + tmpName.split('(')[0];
-      tmpName = tmpName.trim();
+    if (ccaaName.indexOf('(') > -1) {
+      ccaaName = ccaaName.split('(')[1].replace(/[()]/g, '') + ' ' + ccaaName.split('(')[0];
+      ccaaName = ccaaName.trim();
     }
 
     data.Data.forEach( (data) => {
@@ -48,7 +47,7 @@ function processDataset(dataset) {
 
     finalDataset.push({
       id: index,
-      ccaa: tmpName,
+      ccaa: ccaaName,
       values: tmpValues,
     });
 
