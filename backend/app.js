@@ -9,7 +9,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 // Files imports
-import './jobs/index.js';
+// ! import './jobs/index.js';
 
 const app = express();
 
@@ -18,15 +18,21 @@ app.use(cors());
 app.use(express.json());
 
 // import './routes/routes.js'; // Importamos las rutas
-import {populationRouter} from './routes/populationByCCAA.routes.js';
+import {amountOfBirthsRouter} from './routes/amountOfBirthsByCCAA.routes.js';
 import {defunctionsCovidRouter} from './routes/defunctionsCovid.routes.js';
-import {natalityRouter} from './routes/natalityByCCAA.routes.js';
 import {fecundityRouter} from './routes/fecundityByCCAA.routes.js';
+import {infantDefunctionsPerYearRouter} from './routes/infantDefunctionsPerYear.routes.js';
+import {infantMortalityRateRouter} from './routes/infantMortalityRate.routes.js';
+import {populationRouter} from './routes/populationByCCAA.routes.js';
+import {natalityRouter} from './routes/natalityByCCAA.routes.js';
 
-app.use('/api', populationRouter);
+app.use('/api', amountOfBirthsRouter);
 app.use('/api', defunctionsCovidRouter);
-app.use('/api', natalityRouter);
 app.use('/api', fecundityRouter);
+app.use('/api', infantDefunctionsPerYearRouter);
+app.use('/api', infantMortalityRateRouter);
+app.use('/api', populationRouter);
+app.use('/api', natalityRouter);
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');

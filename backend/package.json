@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/danielalvarezm/TFG-Spain-demographic-data-visualization#readme",
   "dependencies": {
-    "axios": "^0.26.0",
+    "axios": "^0.26.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "https": "^1.0.0",

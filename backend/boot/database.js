@@ -1,10 +1,13 @@
 import mongoose from 'mongoose';
 
-mongoose.connect( 'mongodb://localhost:27017/Demografia', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then( (db) => console.log('DB is connected'))
-  .catch( (err) => console.error(err));
+const uri =
+  'mongodb+srv://demographyAdmin:UMwYp0Hw1CO9jdeJ@demography.bgmkp.mongodb.net/Demography?retryWrites=true&w=majority';
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((db) => console.log('DB is connected'))
+  .catch((err) => console.error(err));
 
 export {mongoose};
