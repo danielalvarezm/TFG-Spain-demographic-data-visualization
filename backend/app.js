@@ -8,9 +8,6 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
-// Files imports
-// ! import './jobs/index.js';
-
 const app = express();
 
 app.use(morgan('dev'));
