@@ -11,7 +11,7 @@ const finalDataset = generateInfantDefunctionsPerYear(
 
 await infantDefunctionsPerYearDataToDB(finalDataset);
 console.log('Dataset saved: infant defunctions per year');
-// TODO: hacerlo tmb por comunidad autonoma
+
 function transformToNationalLevel(amountOfBirthsData) {
   const amountOfBirthsAtNationalLevel = [];
   for (let i = 0; i < amountOfBirthsData[0].values.length; i++) {
