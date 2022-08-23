@@ -1,21 +1,21 @@
-// import cron from 'node-cron';
-// import {CRON_TIME} from '../utils/constants.js';
+import cron from 'node-cron';
+import {CRON_TIME_YEAR} from '../utils/constants.js';
 import {getURL, getJSONContent} from '../boot/axios.js';
 import {fecundityDataToDB} from '../services/fecundityByCCAAService.js';
 
-// cron.schedule (CRON_TIME, () => {
-try {
-  const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-indicador-coyuntural-de-fecundidad-por-comunidad-autonoma-segun-orden-del-nacimiento-y-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-1441');
-  const dataset = await getJSONContent(datasetURL);
-  const finalDataset = processDataset(dataset);
-  await fecundityDataToDB(finalDataset);
+cron.schedule(CRON_TIME_YEAR, async () => {
+  try {
+    const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-indicador-coyuntural-de-fecundidad-por-comunidad-autonoma-segun-orden-del-nacimiento-y-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-1441');
+    const dataset = await getJSONContent(datasetURL);
+    const finalDataset = processDataset(dataset);
+    await fecundityDataToDB(finalDataset);
 
-  console.log('Dataset saved: fecundity');
-} catch (error) {
-  console.log(error);
-  // return error;
-}
-// });
+    console.log('Dataset saved: fecundity');
+  } catch (error) {
+    console.log(error);
+    // return error;
+  }
+});
 
 function processDataset(dataset) {
   const finalDataset = [];

@@ -23,13 +23,13 @@ import {infantMortalityRateRouter} from './routes/infantMortalityRate.routes.js'
 import {populationRouter} from './routes/populationByCCAA.routes.js';
 import {natalityRouter} from './routes/natalityByCCAA.routes.js';
 
-app.use('/api', amountOfBirthsRouter);
-app.use('/api', defunctionsCovidRouter);
-app.use('/api', fecundityRouter);
-app.use('/api', infantDefunctionsPerYearRouter);
-app.use('/api', infantMortalityRateRouter);
-app.use('/api', populationRouter);
-app.use('/api', natalityRouter);
+app.use('/', amountOfBirthsRouter);
+app.use('/', defunctionsCovidRouter);
+app.use('/', fecundityRouter);
+app.use('/', infantDefunctionsPerYearRouter);
+app.use('/', infantMortalityRateRouter);
+app.use('/', populationRouter);
+app.use('/', natalityRouter);
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
