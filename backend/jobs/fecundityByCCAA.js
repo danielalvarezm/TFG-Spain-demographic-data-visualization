@@ -1,9 +1,7 @@
-import cron from 'node-cron';
-import {CRON_TIME_YEAR} from '../utils/constants.js';
 import {getURL, getJSONContent} from '../boot/axios.js';
 import {fecundityDataToDB} from '../services/fecundityByCCAAService.js';
 
-cron.schedule(CRON_TIME_YEAR, async () => {
+export async function fecundityFetchData() {
   try {
     const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-indicador-coyuntural-de-fecundidad-por-comunidad-autonoma-segun-orden-del-nacimiento-y-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-1441');
     const dataset = await getJSONContent(datasetURL);
@@ -13,9 +11,8 @@ cron.schedule(CRON_TIME_YEAR, async () => {
     console.log('Dataset saved: fecundity');
   } catch (error) {
     console.log(error);
-    // return error;
   }
-});
+}
 
 function processDataset(dataset) {
   const finalDataset = [];

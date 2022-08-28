@@ -3,7 +3,6 @@
 import './boot/axios.js';
 import {mongoose} from './boot/database.js';
 
-// Modules imports
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -34,5 +33,7 @@ app.use('/', natalityRouter);
 app.listen(3000, () => {
   console.log('Server running on port 3000');
 });
+
+import './jobs/cron.js';
 
 export {app};

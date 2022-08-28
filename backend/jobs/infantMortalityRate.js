@@ -1,12 +1,13 @@
-import cron from 'node-cron';
-import {CRON_TIME_YEAR} from '../utils/constants.js';
+/* eslint-disable indent */
+// import cron from 'node-cron';
 import {getURL, getJSONContent} from '../boot/axios.js';
 import {infantMortalityRateDataToDB} from '../services/infantMortalityRateService.js';
 
-cron.schedule(CRON_TIME_YEAR, async () => {
+// cron.schedule('* 8 * * * *', async () => {
+export async function infantMortalityFetchData() {
   try {
     const datasetURL = await getURL(
-      'https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-mortalidad-infantil-por-provincia-segun-sexo-idb-identificador-api-48881',
+      'https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-mortalidad-infantil-por-provincia-segun-sexo-idb-identificador-api-48881'
     );
     const dataset = await getJSONContent(datasetURL);
     const finalDataset = processDataset(dataset);
@@ -16,7 +17,9 @@ cron.schedule(CRON_TIME_YEAR, async () => {
   } catch (error) {
     console.log(error);
   }
-});
+}
+
+// });
 
 function processDataset(dataset) {
   /*

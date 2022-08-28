@@ -1,9 +1,9 @@
-import cron from 'node-cron';
-import {CRON_TIME_YEAR} from '../utils/constants.js';
+/* eslint-disable indent */
+// import cron from 'node-cron';
 import {getURL, getJSONContent} from '../boot/axios.js';
 import {populationDataToDB} from '../services/populationByCCAAService.js';
 
-cron.schedule(CRON_TIME_YEAR, async () => {
+export async function populationFetchData() {
   try {
     const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-poblacion-residente-por-fecha-sexo-y-generacion-edad-a-31-de-diciembre-semestral-comunidades-autonomas-cifras-de-poblacion-identificador-api-96821');
     const dataset = await getJSONContent(datasetURL);
@@ -14,7 +14,7 @@ cron.schedule(CRON_TIME_YEAR, async () => {
   } catch (error) {
     console.log(error);
   }
-});
+}
 
 function processDataset(dataset) {
   const maleDataset = [];

@@ -1,16 +1,21 @@
-import './amountOfBirthsByCCAA.js';
 import {getInfantMortalityRateData} from '../services/infantMortalityRateService.js';
 import {getAmountOfBirthsData} from '../services/amountOfBirthsByCCAAService.js';
 import {infantDefunctionsPerYearDataToDB} from '../services/infantDefunctionsPerYearService.js';
 
-const infantMortalityRateData = await getInfantMortalityRateData();
-const amountOfBirthsData = await getAmountOfBirthsData();
-const amountOfBirthsAtNationalLevel = transformToNationalLevel(amountOfBirthsData);
-const finalDataset = generateInfantDefunctionsPerYear(
-  infantMortalityRateData, amountOfBirthsAtNationalLevel);
+export async function infantDefunctionsFetchData() {
+  try {
+    const infantMortalityRateData = await getInfantMortalityRateData();
+    const amountOfBirthsData = await getAmountOfBirthsData();
+    const amountOfBirthsAtNationalLevel = transformToNationalLevel(amountOfBirthsData);
+    const finalDataset = generateInfantDefunctionsPerYear(
+      infantMortalityRateData, amountOfBirthsAtNationalLevel);
 
-await infantDefunctionsPerYearDataToDB(finalDataset);
-console.log('Dataset saved: infant defunctions per year');
+    await infantDefunctionsPerYearDataToDB(finalDataset);
+    console.log('Dataset saved: infant defunctions per year');
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function transformToNationalLevel(amountOfBirthsData) {
   const amountOfBirthsAtNationalLevel = [];
@@ -42,3 +47,4 @@ function generateInfantDefunctionsPerYear(infantMortalityRateData, amountOfBirth
   }
   return finalDataset;
 }
+

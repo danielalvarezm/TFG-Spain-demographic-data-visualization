@@ -1,10 +1,7 @@
-import cron from 'node-cron';
-import {CRON_TIME_YEAR} from '../utils/constants.js';
 import {getURL, getJSONContent} from '../boot/axios.js';
 import {natalityDataToDB} from '../services/natalityByCCAAService.js';
 
-// Llamamos a getURL que es una promesa
-cron.schedule(CRON_TIME_YEAR, async () => {
+export async function natalityFetchData() {
   try {
     const datasetURL = await getURL('https://datos.gob.es/apidata/catalog/dataset/ea0010587-tasa-de-natalidad-por-comunidad-autonoma-segun-nacionalidad-espanola-extranjera-de-la-madre-idb-identificador-api-49429');
     const dataset = await getJSONContent(datasetURL);
@@ -14,9 +11,8 @@ cron.schedule(CRON_TIME_YEAR, async () => {
     console.log('Dataset saved: natality');
   } catch (error) {
     console.log(error);
-    // return error;
   }
-});
+}
 
 function processDataset(dataset) {
   const finalDataset = [];
