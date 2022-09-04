@@ -4,6 +4,8 @@ El presente proyecto consiste en realizar una aplicación Full-Stack, donde a tr
 
 Dentro de **/backend** se proporciona un fichero *env.sample*, el cual deberá ser renombrado a *.env* y completado con los datos de conexión a la base de datos.
 
+El contenido de **/frontend** se encuentra [aquí](https://github.com/danielalvarezm/tfg-vdde-web-version)
+
 A continuación se mostrarán las principales funcionalidades que deberá de realizar la aplicación:
 
 * El usuario podrá escoger entre el catálogo de información disponible, la visualización que desea observar.
