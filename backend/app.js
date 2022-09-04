@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 // Boot components
 import './boot/axios.js';
