@@ -1,7 +1,11 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 // Boot components
 import './boot/axios.js';
 import {mongoose} from './boot/database.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 
 // Modules imports
 import express from 'express';

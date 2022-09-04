@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const uri =
-  'mongodb+srv://demographyAdmin:UMwYp0Hw1CO9jdeJ@demography.bgmkp.mongodb.net/Demography?retryWrites=true&w=majority';
+const uri = process.env.DATABASE_URI;
 mongoose
   .connect(uri, {
     useNewUrlParser: true,
