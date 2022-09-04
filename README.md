@@ -1,6 +1,8 @@
 # TFG - Visualización de datos demográficos en España
 
-El presente proyecto consiste en realizar una aplicación Full-Stack, donde a través del tratamiento de los datos abiertos de la API ofrecida por el [Gobierno de España](https://datos.gob.es/es/), se ofrezca una visualización en tiempo real de los datos demográficos del país. Dicha aplicación contará con una interfaz web, así como un despliegue para aplicación Android.
+El presente proyecto consiste en realizar una aplicación Full-Stack, donde a través del tratamiento de los datos abiertos de la API ofrecida por el [Gobierno de España](https://datos.gob.es/es/), se ofrezca una visualización en tiempo real de los datos demográficos del país. Dicha aplicación contará con una [interfaz web](https://vdde.me/menu-principal), así como un despliegue para aplicación Android.
+
+Dentro de **/backend** se proporciona un fichero *env.sample*, el cual deberá ser renombrado a *.env* y completado con los datos de conexión a la base de datos.
 
 A continuación se mostrarán las principales funcionalidades que deberá de realizar la aplicación:
 
@@ -17,4 +19,4 @@ A lo largo del desarrollo de la herramienta, se pretende llevar a cabo las sigui
 * Creación de interfaz gráfica para visualizar información.
 * Desarrollo de aplicación Android.
 * Validación de la herramienta de visualización de datos.
-* Despliegue de la herramienta de visualización de datos
+* Despliegue de la herramienta de visualización de datos.
